@@ -1,0 +1,41 @@
+﻿@model SportsEquipmentRental.ViewModels.EquipmentFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New equipment</h2>
+@using (Html.BeginForm("Create", "Equipment"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Equipment.ManufacturerId)
+        @Html.DropDownListFor(m => m.Equipment.ManufacturerId, new SelectList(Model.Manufacturers, "Id", "Name"), "Select Manufacturer", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Equipment.ManufacturerId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Equipment.Kind)
+        @Html.TextBoxFor(m => m.Equipment.Kind, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Equipment.Kind)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Equipment.Description)
+        @Html.TextBoxFor(m => m.Equipment.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Equipment.InStock)
+        @Html.TextBoxFor(m => m.Equipment.InStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Equipment.InStock)
+    </div>
+
+    @Html.HiddenFor(m => m.Equipment.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

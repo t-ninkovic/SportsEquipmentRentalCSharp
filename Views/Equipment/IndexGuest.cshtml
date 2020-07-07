@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SportsEquipmentRental.Models.Equipment>
+
+@{
+    ViewBag.Title = "Equipments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Equipments</h2>
+
+<table class="table table-bordered table-hover" id="equipments">
+    <thead>
+        <tr>
+            <th>Kind</th>
+            <th>Manufacturer</th>
+            <th>Description</th>
+            <th>In stock</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipment in Model)
+        {
+            <tr>
+                <td>@equipment.Kind</td>
+                <td>@equipment.Manufacturer.Name</td>
+                <td>@equipment.Description</td>
+                <td>@equipment.InStock</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function()
+        {
+            $("#equipments").DataTable();
+        })
+    </script>
+    
+    }

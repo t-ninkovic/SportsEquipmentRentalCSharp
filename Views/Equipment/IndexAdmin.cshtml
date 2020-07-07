@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SportsEquipmentRental.Models.Equipment>
+
+@{
+    ViewBag.Title = "Equipments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Equipments</h2>
+<p>
+    @Html.ActionLink("New equipment", "New", "Equipment", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-hover" id="equipments">
+    <thead>
+        <tr>
+            <th>Kind</th>
+            <th>Manufacturer</th>
+            <th>Description</th>
+            <th>In stock</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipment in Model)
+        {
+            <tr>
+                <td>@equipment.Kind</td>
+                <td>@equipment.Manufacturer.Name</td>
+                <td>@equipment.Description</td>
+                <td>@equipment.InStock</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Equipment", new { id = equipment.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Equipment", new { id=equipment.Id}, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function()
+        {
+            $("#equipments").DataTable();
+        })
+    </script>
+    
+    }

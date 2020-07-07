@@ -1,0 +1,29 @@
+﻿@model SportsEquipmentRental.ViewModels.EquipmentRentalFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New rental</h2>
+@using (Html.BeginForm("Create", "EquipmentRental"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.EquipmentRental.CustomerId)
+        @Html.DropDownListFor(m => m.EquipmentRental.CustomerId, new SelectList(Model.Customers, "Id", "Name"), "Select Customer", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.EquipmentRental.CustomerId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.EquipmentRental.EquipmentId)
+        @Html.DropDownListFor(m => m.EquipmentRental.EquipmentId, new SelectList(Model.Equipments, "Id", "Kind"), "Select Equipment", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.EquipmentRental.EquipmentId)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
